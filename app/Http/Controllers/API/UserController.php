@@ -60,7 +60,7 @@ class UserController extends Controller
         try {
             $request->validate([
                 'name' => ['required','string','max:255'],
-                'email' => ['required','string','email','max:255','unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => $this->passwordRules()
             ]);
 
@@ -80,9 +80,9 @@ class UserController extends Controller
 
             return ResponseFormatter::success([
                 'access_token' => $tokenResult,
-                'token_type' => $Bearer,
+                'token_type' => 'Bearer',
                 'user' => $user
-            ]);
+            ], 'User Registered');
             
         } catch (Exception $error) {
             return ResponseFormatter::error([
